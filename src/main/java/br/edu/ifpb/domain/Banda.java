@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -27,7 +29,9 @@ public class Banda implements Serializable{
     private int id;
     private String nome;
     private String origem;
+    
     @ElementCollection
+    @JoinColumn(referencedColumnName = "id")
     private List<String> integrantes; 
 
     {

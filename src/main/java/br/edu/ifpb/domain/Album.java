@@ -3,13 +3,17 @@ package br.edu.ifpb.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -32,10 +36,11 @@ public class Album implements Serializable {
     
     @Enumerated(EnumType.STRING)
     private Estilo estilo;
-    @OneToOne
+    
+    @OneToMany
+    @ElementCollection
     private Banda banda;
 
-    @Column(columnDefinition = "DATE")
     private LocalDate lancamento;
 
     public Album() {
