@@ -14,6 +14,7 @@ import javax.persistence.PersistenceContext;
  * @since 13/11/2017
  */
 
+
 @RepoAlbum
 public class AlbumRepository implements Repository<Album> {
 

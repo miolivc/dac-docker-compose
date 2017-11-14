@@ -4,12 +4,10 @@ package br.edu.ifpb.controller;
 import br.edu.ifpb.domain.Album;
 import br.edu.ifpb.domain.Estilo;
 import br.edu.ifpb.persistence.Repository;
-import br.edu.ifpb.qualifier.EntityDomain;
 import br.edu.ifpb.qualifier.RepoAlbum;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -29,10 +27,12 @@ public class AlbumController implements Serializable {
     @Inject
     @RepoAlbum
     private Repository<Album> repository;
-    
-    private Album album = new Album();
-   
+    private Album album;
     private String integrantesBanda;
+    
+    {
+        this.album = new Album();
+    }
     
     public String add() {
         album.getBanda().setIntegrantes(recuperaIntegrantes());
@@ -40,12 +40,12 @@ public class AlbumController implements Serializable {
         return null;
     }
     
-    public Iterator<Album> list() {
-        return repository.get().iterator();
+    public List<Album> list() {
+        return repository.get();
     }
 
-    public Estilo[] estilos() {
-        return Estilo.values();
+    public List<Estilo> todosOsEstilos() {
+        return Arrays.asList(Estilo.values());
     }
     
     public List<String> recuperaIntegrantes() {
@@ -57,7 +57,6 @@ public class AlbumController implements Serializable {
     /*
      * Getters and Setters
      */
-    
     public Album getAlbum() {
         return album;
     }

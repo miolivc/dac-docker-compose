@@ -12,17 +12,17 @@
             <h:inputText id="nomeBanda" value="#{albumController.album.banda.nome}"/><br/>
             
             <label for="integranteBanda">Integrante da Banda:</label>
-            <h:inputText id="integranteBanda" value="#{albumController.integrantes}"/><br/>
+            <h:inputText id="integranteBanda" value="#{albumController.integrantesBanda}"/><br/>
             
             <label for="nomeAlbum">Nome do Album:</label>
             <h:inputText id="nomeAlbum" value="#{albumController.album.nome}"/><br/>
             
             <label for="lancamento">Data de Lancamento do Album:</label>
-            <h:inputText id="lancamento" value="#{albumController.album.lancamento}"><br/>
+            <h:inputText id="lancamento" value="#{albumController.album.lancamento}"/><br/>
             
             <label for="estilo">Estilo do Album:</label>
             <h:selectOneMenu id="estilo" value="#{albumController.album.estilo}">
-                <f:selectItems value="#{albumController.estilos}"/>
+                <f:selectItems value="#{albumController.todosOsEstilos()}"/>
             </h:selectOneMenu><br/>
             
             <h:commandButton value="Adicionar" action="#{albumController.add()}" />
