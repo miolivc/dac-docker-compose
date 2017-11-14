@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <label for="nomeBanda">Nome da Banda:</label>
+            <h:inputText id="nomeBanda" value="#{albumController.album.banda.nome}"/><br/>
+            
+            <label for="integranteBanda">Integrante da Banda:</label>
+            <h:inputText id="integranteBanda" value="#{albumController.integrantes}"/><br/>
+            
+            <label for="nomeAlbum">Nome do Album:</label>
+            <h:inputText id="nomeAlbum" value="#{albumController.album.nome}"/><br/>
+            
+            <label for="lancamento">Data de Lancamento do Album:</label>
+            <h:inputText id="lancamento" value="#{albumController.album.lancamento}"><br/>
+            
+            <label for="estilo">Estilo do Album:</label>
+            <h:selectOneMenu id="estilo" value="#{albumController.album.estilo}">
+                <f:selectItems value="#{albumController.estilos}"/>
+            </h:selectOneMenu><br/>
+            
+            <h:commandButton value="Adicionar" action="#{albumController.add()}" />
+        </h:form>
+        
+        <h:dataTable var="album" value="#{albumController.list()}">
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                #{album.nome}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Estilo</f:facet>
+                #{album.estilo}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Banda</f:facet>
+                #{album.banda.nome}
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html> 
+

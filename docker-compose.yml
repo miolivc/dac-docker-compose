@@ -1,0 +1,17 @@
+version: "2"
+services:
+  postgres:
+    build: ./postgres
+    image: amz/banco
+    container_name: banco
+    ports:
+      - "5433:5432"
+  webapp:
+    build: .
+    image: amz/app
+    container_name: app
+    ports: 
+      - "4848:4848" 
+      - "8080:8080" 
+    links: 
+      - "postgres:host-database"
