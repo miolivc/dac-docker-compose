@@ -27,7 +27,9 @@ public class AlbumController implements Serializable {
     @Inject
     @RepoAlbum
     private Repository<Album> repository;
+    
     private Album album;
+    
     private String integrantesBanda;
     
     {

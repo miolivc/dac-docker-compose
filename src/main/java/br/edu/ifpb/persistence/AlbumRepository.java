@@ -3,9 +3,11 @@ package br.edu.ifpb.persistence;
 
 import br.edu.ifpb.domain.Album;
 import br.edu.ifpb.qualifier.RepoAlbum;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -16,12 +18,13 @@ import javax.persistence.PersistenceContext;
 
 
 @RepoAlbum
-public class AlbumRepository implements Repository<Album> {
+public class AlbumRepository implements Repository<Album>, Serializable {
 
-    @PersistenceContext(unitName = "dac-docker-exemplo")
+    @PersistenceContext
     private EntityManager manager;
     
     @Override
+    @Transactional
     public void add(Album album) {
         manager.persist(album);
     }

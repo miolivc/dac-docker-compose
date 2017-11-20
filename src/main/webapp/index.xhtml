@@ -6,6 +6,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-orange.min.css" /> 
     </h:head>
     <h:body>
         <h1>Cadastro de Albuns</h1>
@@ -20,7 +22,9 @@
             <h:inputText id="nomeAlbum" value="#{albumController.album.nome}"/><br/>
             
             <label for="lancamento">Data de Lancamento do Album:</label>
-            <h:inputText id="lancamento" value="#{albumController.album.lancamento}"/><br/>
+            <h:inputText id="lancamento" value="#{albumController.album.lancamento}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:inputText><br/>
             
             <label for="estilo">Estilo do Album:</label>
             <h:selectOneMenu id="estilo" value="#{albumController.album.estilo}">
@@ -30,20 +34,28 @@
             <h:commandButton value="Adicionar" action="#{albumController.add()}" />
         </h:form>
         
-        <h:dataTable var="album" value="#{albumController.list()}">
+        <h:dataTable var="album" value="#{albumController.list()}" class="mdl-data-table mdl-js-data-table">
             <h:column>
-                <f:facet name="header">Nome</f:facet>
+                <f:facet name="header" class="mdl-data-table__cell--non-numeric">
+                    Nome
+                </f:facet>
                 #{album.nome}
             </h:column>
             <h:column>
-                <f:facet name="header">Estilo</f:facet>
+                <f:facet name="header" class="mdl-data-table__cell--non-numeric">
+                    Estilo
+                </f:facet>
                 #{album.estilo}
             </h:column>
             <h:column>
-                <f:facet name="header">Banda</f:facet>
+                <f:facet name="header" class="mdl-data-table__cell--non-numeric">
+                    Banda
+                </f:facet>
                 #{album.banda.nome}
             </h:column>
         </h:dataTable>
+        
+        <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     </h:body>
 </html> 
 
