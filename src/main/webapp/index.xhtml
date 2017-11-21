@@ -23,7 +23,7 @@
             
             <label for="lancamento">Data de Lancamento do Album:</label>
             <h:inputText id="lancamento" value="#{albumController.album.lancamento}">
-                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                <f:converter converterId="localDateConverter"/>
             </h:inputText><br/>
             
             <label for="estilo">Estilo do Album:</label>

@@ -3,6 +3,7 @@ package br.edu.ifpb.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -32,7 +33,7 @@ public class Album implements Serializable {
     @Enumerated(EnumType.STRING)
     private Estilo estilo;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Banda banda;
 
     private LocalDate lancamento;
