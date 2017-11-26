@@ -7,7 +7,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import javax.ejb.Stateless;
+import javax.ejb.Local;
 
 /**
  *
@@ -18,13 +19,14 @@ import javax.transaction.Transactional;
 
 
 @RepoAlbum
+@Stateless
+@Local(Repository.class)
 public class AlbumRepository implements Repository<Album>, Serializable {
 
     @PersistenceContext
     private EntityManager manager;
     
     @Override
-    @Transactional
     public void add(Album album) {
         manager.persist(album);
     }
@@ -32,6 +34,11 @@ public class AlbumRepository implements Repository<Album>, Serializable {
     @Override
     public void update(Album album) {
         manager.merge(album);
+    }
+
+    @Override
+    public void remove(Album album) {
+        manager.remove(manager.merge(album));
     }
     
     @Override

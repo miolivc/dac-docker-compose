@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,7 +21,7 @@ import javax.inject.Named;
  */
 
 @Named
-@SessionScoped
+@RequestScoped
 public class AlbumController implements Serializable {
 
     @Inject
@@ -39,6 +39,7 @@ public class AlbumController implements Serializable {
     public String add() {
         album.getBanda().setIntegrantes(recuperaIntegrantes());
         repository.add(album);
+        this.album = new Album();
         return null;
     }
     
@@ -50,6 +51,11 @@ public class AlbumController implements Serializable {
         return Arrays.asList(Estilo.values());
     }
     
+    public String remove(Album album) {
+        repository.remove(album);
+        return null;
+    }
+
     public List<String> recuperaIntegrantes() {
         List<String> integrantes = new ArrayList<>();
         integrantes.addAll(Arrays.asList(integrantesBanda.split(",")));
